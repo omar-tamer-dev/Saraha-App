@@ -3,6 +3,8 @@ import { randomInt } from "node:crypto";
 
 const sendEmail = async ({to, subject, attachments, html }) => {
 
+    const { EMAIL, PASS } = process.env;
+
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth:{
@@ -12,7 +14,7 @@ const sendEmail = async ({to, subject, attachments, html }) => {
     })
 
   const info = await transporter.sendMail({
-    from: '"sarahaApp" <${EMAIL}>', 
+    from: `"sarahaApp" <${EMAIL}>`, 
     to,
     subject,
     html,
